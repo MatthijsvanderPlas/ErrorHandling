@@ -2,11 +2,11 @@ using System.Net;
 using ErrorHandling.Entity;
 using ErrorHandling.Persistence;
 using ErrorHandling.Repository;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var logger = new LoggerConfiguration()
+    .WriteTo.ApplicationInsights(TelemetryConverter.Traces)
     .WriteTo.Console()
     .CreateLogger();
 
@@ -24,7 +24,7 @@ app.Use(async (context, next) =>
     }
     catch (Exception e)
     {
-        logger.Error(e.Message);
+        logger.Error("Unexpected Error: {Error}",e.ToString());
         if (!context.Response.HasStarted)
         {
             context.Response.StatusCode = 500;
