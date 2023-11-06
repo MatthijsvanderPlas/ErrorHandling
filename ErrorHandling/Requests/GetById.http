@@ -1,0 +1,4 @@
+﻿GET http://localhost:5159/{{id}}
+Accept: application/json
+Content-Type: application/json
+
