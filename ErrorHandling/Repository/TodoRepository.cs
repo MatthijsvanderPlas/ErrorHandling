@@ -19,7 +19,7 @@ public class TodoRepository
         var result = await _context.Todos.ToListAsync();
         if (result.Count == 0)
         {
-            return Result.Fail("Todos not found");
+            return Result.Fail("Database unreachable");
         }
         return Result.Ok(result);
     }

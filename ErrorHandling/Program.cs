@@ -1,5 +1,8 @@
+using System.Net;
+using ErrorHandling.Entity;
 using ErrorHandling.Persistence;
 using ErrorHandling.Repository;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -40,7 +43,8 @@ app.MapGet("/", async (TodoRepository repository) =>
     var result = repository.GetAllAsync().Result;
     if (result.IsFailed)
     {
-        return Results.Problem(result.Errors.First().Message);
+        return Results.Problem(result.Errors.First().Message, 
+            statusCode: (int?)HttpStatusCode.InternalServerError);
     }
     return Results.Ok(result.Value);
 });
@@ -48,6 +52,16 @@ app.MapGet("/", async (TodoRepository repository) =>
 app.MapGet("/{id}", async (TodoRepository repository, int id) =>
 {
     var result = repository.GetByIdAsync(id).Result;
+    if (result.IsFailed)
+    {
+        return Results.Problem(result.Errors.First().Message);
+    }
+    return Results.Ok(result.Value);
+});
+
+app.MapPost("/", async (TodoRepository repository, Todo todo) =>
+{
+    var result = repository.CreateAsync(todo).Result;
     if (result.IsFailed)
     {
         return Results.Problem(result.Errors.First().Message);

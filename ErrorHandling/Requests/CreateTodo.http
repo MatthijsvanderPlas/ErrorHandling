@@ -1,0 +1,8 @@
+﻿POST http://localhost:5159
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "1",
+  "title": "First Todo"
+}
