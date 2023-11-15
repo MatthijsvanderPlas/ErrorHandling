@@ -1,0 +1,3 @@
+﻿GET http://localhost:7071/todos
+Accept: application/json
+Content-Type: application/json

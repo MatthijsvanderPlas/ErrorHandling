@@ -1,0 +1,16 @@
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Presentation\bin\output\ErrorHandling.Domain.deps.json
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Presentation\bin\output\ErrorHandling.Domain.dll
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Presentation\bin\output\ErrorHandling.Domain.pdb
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\bin\Debug\net8.0\ErrorHandling.Domain.deps.json
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\bin\Debug\net8.0\ErrorHandling.Domain.dll
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\bin\Debug\net8.0\ErrorHandling.Domain.pdb
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.csproj.AssemblyReference.cache
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.AssemblyInfoInputs.cache
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.AssemblyInfo.cs
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.csproj.CoreCompileInputs.cache
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.sourcelink.json
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.dll
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\refint\ErrorHandling.Domain.dll
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ErrorHandling.Domain.pdb
+C:\Users\MatthijsvanderPlas\RiderProjects\Testing\ErrorHandling\Src\ErrorHandling.Domain\obj\Debug\net8.0\ref\ErrorHandling.Domain.dll

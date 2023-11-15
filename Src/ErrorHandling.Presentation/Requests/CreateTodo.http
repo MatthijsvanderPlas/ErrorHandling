@@ -1,0 +1,4 @@
+﻿POST http://localhost:5159/?todo=Be Amazing
+Accept: application/json
+Content-Type: application/json
+
