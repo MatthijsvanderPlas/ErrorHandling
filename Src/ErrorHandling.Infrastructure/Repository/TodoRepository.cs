@@ -14,16 +14,9 @@ public class TodoRepository(TodoContext context) : ITodoRepository
 
     public async Task<List<Todo>> GetAllAsync()
     {
-        try
-        {
-            var result = await context.Todos.ToListAsync();
-            return result;
-        }
-        catch (Exception e)
-        {
-            _logger.Error(e, "Database unreachable");
-            throw;
-        }
+        var result = await context.Todos.ToListAsync();
+
+        return result;
     }
 
     public async Task<Todo> GetByIdAsync(int id)
@@ -35,6 +28,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
             _logger.Error("Todo not found");
             throw new NoTodoFoundException();
         }
+
         return result;
     }
 
@@ -53,8 +47,9 @@ public class TodoRepository(TodoContext context) : ITodoRepository
         if (todo is null)
         {
             _logger.Error("Todo not found");
-            throw new NoTodoFoundException(); 
+            throw new NoTodoFoundException();
         }
+
         context.Todos.Remove(todo);
     }
 }

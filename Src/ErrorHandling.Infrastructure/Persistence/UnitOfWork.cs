@@ -2,7 +2,7 @@
 
 namespace ErrorHandling.Infrastructure.Persistence;
 
-public class UnitOfWork(TodoContext context)
+public class UnitOfWork(TodoContext context) : IUnitOfWork
 {
 
     public async Task SaveChangesAsync()

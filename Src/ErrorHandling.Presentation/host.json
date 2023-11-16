@@ -5,11 +5,14 @@
       "samplingSettings": {
         "isEnabled": true,
         "excludedTypes": "Request"
-      },
-      "enableLiveMetricsFilters": true
+      }
+    },
+    "logLevel": {
+      "default": "Warning",
+      "Host": "Error",
+      "Function": "Information"
     }
   },
-  "functionTimeout": "01:00:00",
   "extensions": {
     "http": {
       "routePrefix": ""

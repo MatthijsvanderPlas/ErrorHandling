@@ -8,7 +8,7 @@ using Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
-    .WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
+    .WriteTo.ApplicationInsights(TelemetryConverter.Traces)
     .WriteTo.Console()
     .CreateLogger();
 

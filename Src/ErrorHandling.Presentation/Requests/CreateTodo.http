@@ -1,4 +1,6 @@
-﻿POST http://localhost:5159/?todo=Be Amazing
+﻿// @no-log 
+// @name Create Todo
+POST http://localhost:7071/api/todos/?title=Test
 Accept: application/json
 Content-Type: application/json
 

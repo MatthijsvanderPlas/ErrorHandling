@@ -11,6 +11,7 @@ public static class RegisterDependencies
     {
         services.AddDbContext<TodoContext>();
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ITodoRepository, TodoRepository>();
 
         return services;

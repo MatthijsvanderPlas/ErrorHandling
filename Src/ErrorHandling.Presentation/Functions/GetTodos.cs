@@ -4,6 +4,7 @@ using ErrorHandling.Domain.Entity;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
+using Microsoft.Extensions.Logging;
 
 namespace ErrorHandling.Presentation.Functions;
 
@@ -15,12 +16,13 @@ public partial class Todos
     [OpenApiResponseWithoutBody(HttpStatusCode.BadRequest, Summary = "Bad request", Description = "Bad request")]
     [OpenApiResponseWithoutBody(HttpStatusCode.Conflict, Summary = "Conflict", Description = "Conflict")]
     
-    public async Task<HttpResponseData> Run(
+    public async Task<HttpResponseData> GetTodos(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "todos")] HttpRequestData req,
         FunctionContext executionContext)
     {
-        _logger.Information("C# HTTP trigger function processed a request");
+        var logger = executionContext.GetLogger("GetTodos");
         
+        logger.LogInformation("C# HTTP trigger function processed a request.");
         var result = await _sender.Send(new GetTodosCommand());
         
         var response = req.CreateResponse(HttpStatusCode.OK);
