@@ -80,7 +80,7 @@ fabric.properties
 .idea/*
 /ErrorHandling/bin/*
 /ErrorHandling/obj/*
-**/bin/*
-**/obj/*
+**/**/bin/*
+**/**/obj/*
 **/node_modules/*
 **/.idea/*
