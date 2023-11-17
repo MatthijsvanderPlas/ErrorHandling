@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Text;
 using ErrorHandling.Domain.Primitives;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -33,15 +32,39 @@ public class ExceptionMiddleware : IFunctionsWorkerMiddleware
             await HandleDomainExceptionAsync(context, exception);
 
         }
+        catch (Exception e) when (e is FunctionInputConverterException exception)
+        {
+            logger.Error(exception, "Error: {Message}", e.Message);
+            await HandleBadRequestExceptionAsync(context, exception);
+        }
         catch (Exception e)
         {
-            logger.Error(e, "Error: {Message}", e.Message);
+            logger.Error(e, "Error Basic Exception: {Message}", e.Message);
 
             await HandleExceptionAsync(context, e);
         }
     }
 
     static async Task HandleValidationExceptionAsync(FunctionContext context, ValidationException
+        exception)
+    {
+        var requestData = await context.GetHttpRequestDataAsync();
+        var response = requestData.CreateResponse(HttpStatusCode.BadRequest);
+        
+        var details = new ProblemDetails()
+        {
+            Detail = exception.Message,
+            Status = (int)HttpStatusCode.BadRequest,
+            Title = "Validation Error",
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+            Instance = exception.StackTrace
+        };
+        
+        await response.WriteAsJsonAsync(details, response.StatusCode);
+        context.GetInvocationResult().Value = response;
+    }
+    
+    static async Task HandleBadRequestExceptionAsync(FunctionContext context, FunctionInputConverterException 
         exception)
     {
         var requestData = await context.GetHttpRequestDataAsync();
@@ -75,7 +98,7 @@ public class ExceptionMiddleware : IFunctionsWorkerMiddleware
             Instance = exception.StackTrace
         };
 
-        await response.WriteAsJsonAsync(details);
+        await response.WriteAsJsonAsync(details, response.StatusCode);
         context.GetInvocationResult().Value = response;
     }
 
@@ -93,7 +116,7 @@ public class ExceptionMiddleware : IFunctionsWorkerMiddleware
             Instance = exception.StackTrace
         };
 
-        await response.WriteAsJsonAsync(details);
+        await response.WriteAsJsonAsync(details, response.StatusCode);
         context.GetInvocationResult().Value = response;
     }
 }
