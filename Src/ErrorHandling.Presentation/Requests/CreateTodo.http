@@ -1,6 +1,6 @@
 ﻿// @no-log 
 // @name Create Todo
-POST http://localhost:7071/api/todos/?title=Test
+POST http://localhost:7071/api/todos/?title= 
 Accept: application/json
 Content-Type: application/json
 

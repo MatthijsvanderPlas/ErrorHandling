@@ -25,7 +25,7 @@ public partial class Todos
         var result = await _sender.Send(new CreateTodoCommand(request));
         
         var response = req.CreateResponse(HttpStatusCode.Created);
-        await response.WriteAsJsonAsync(result);
+        await response.WriteAsJsonAsync(result.Id);
         return response;
     }
 }

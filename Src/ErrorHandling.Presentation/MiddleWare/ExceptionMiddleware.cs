@@ -64,31 +64,25 @@ public class ExceptionMiddleware : IFunctionsWorkerMiddleware
         DomainException
     {
         var requestData = await context.GetHttpRequestDataAsync();
-        var test = context.GetHttpResponseData();
-        test.StatusCode = exception.StatusCode;
-        test.Body = new MemoryStream(Encoding.UTF8.GetBytes(exception.Message));
-        var response = requestData!.CreateResponse();
-        response.StatusCode = exception.StatusCode;
+        var response = requestData!.CreateResponse(exception.StatusCode);
 
         var details = new ProblemDetails()
         {
             Detail = exception.Message,
             Status = (int)exception.StatusCode,
-            Title = exception.StatusCode.ToString(),
+            Title = exception.Title,
             Type = exception.Type,
             Instance = exception.StackTrace
         };
 
         await response.WriteAsJsonAsync(details);
-        var invocationResult = context.GetInvocationResult();
-        invocationResult.Value = response;
+        context.GetInvocationResult().Value = response;
     }
 
     static async Task HandleExceptionAsync(FunctionContext context, Exception exception)
     {
         var requestData = await context.GetHttpRequestDataAsync();
-        var response = requestData!.CreateResponse();
-        response.StatusCode = HttpStatusCode.InternalServerError;
+        var response = requestData!.CreateResponse(HttpStatusCode.InternalServerError);
 
         var details = new ProblemDetails()
         {
@@ -100,7 +94,6 @@ public class ExceptionMiddleware : IFunctionsWorkerMiddleware
         };
 
         await response.WriteAsJsonAsync(details);
-        var invocationResult = context.GetInvocationResult();
-        invocationResult.Value = response;
+        context.GetInvocationResult().Value = response;
     }
 }
