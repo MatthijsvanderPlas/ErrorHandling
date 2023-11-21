@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using ErrorHandling.Application.Todos.CreateTodo;
+using ErrorHandling.Domain.Entity;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
@@ -14,6 +15,10 @@ public partial class Todos
     [OpenApiOperation(operationId: "CreateTodo", tags: new[] { "todos" }, Summary = "Create a new todo")]
     [OpenApiParameter("title", In = ParameterLocation.Query, Type = typeof(string), Required = 
         true)]
+    [OpenApiResponseWithBody(HttpStatusCode.Created, contentType: "application/json", bodyType: 
+        typeof(Todo), Summary = "Created Todo response")]
+    
+    
     public async Task<HttpResponseData> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post", Route = "todos")] HttpRequestData req,
         FunctionContext executionContext, string title)
@@ -25,7 +30,7 @@ public partial class Todos
         var result = await _sender.Send(new CreateTodoCommand(request));
         
         var response = req.CreateResponse(HttpStatusCode.Created);
-        await response.WriteAsJsonAsync(result.Id);
+        await response.WriteAsJsonAsync(result);
         return response;
     }
 }

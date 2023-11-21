@@ -9,7 +9,7 @@
     },
     "logLevel": {
       "default": "Warning",
-      "Host": "Error",
+      "Host": "Critical",
       "Function": "Information"
     }
   },

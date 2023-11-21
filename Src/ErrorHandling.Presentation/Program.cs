@@ -6,12 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .MinimumLevel.Debug()
-    .WriteTo.ApplicationInsights(TelemetryConverter.Traces)
-    .WriteTo.Console()
-    .CreateLogger();
-
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults(options =>
     {
@@ -19,7 +13,6 @@ var host = new HostBuilder()
     })
     .ConfigureServices(services =>
     {
-        services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(Log.Logger, true));
         services.AddApplicationError();
         services.AddInfrastructureError();
     })

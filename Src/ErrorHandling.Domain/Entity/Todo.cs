@@ -9,6 +9,10 @@ public class Todo
     public string Title { get; set; } = string.Empty;
     public bool IsCompleted { get; set; } = false;
 
+    protected Todo()
+    {
+    }
+
     Todo(string title)
     {
         Title = title;

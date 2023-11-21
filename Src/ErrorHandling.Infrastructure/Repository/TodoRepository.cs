@@ -1,4 +1,5 @@
-﻿using ErrorHandling.Domain.Entity;
+﻿using System.Text.Json;
+using ErrorHandling.Domain.Entity;
 using ErrorHandling.Domain.Exceptions;
 using ErrorHandling.Domain.Interfaces;
 using ErrorHandling.Infrastructure.Persistence;
@@ -19,7 +20,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
         return result;
     }
 
-    public async Task<Todo> GetByIdAsync(int id)
+    public async Task<Todo> GetByIdAsync(Guid id)
     {
         _logger.Information("Getting Todo by id");
         var result = await context.Todos.FindAsync(id);
@@ -37,10 +38,11 @@ public class TodoRepository(TodoContext context) : ITodoRepository
         _logger.Information("Creating Todo");
         var newTodo = Todo.Create(todo);
         await context.Todos.AddAsync(newTodo);
+        Console.WriteLine(JsonSerializer.Serialize(newTodo));
         return newTodo;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         _logger.Information("Deleting Todo");
         var todo = await context.Todos.FindAsync(id);
